@@ -20,8 +20,8 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
-server.listen(8080, () => {
-    console.log('Server running on http://localhost:8080/');
+server.listen(1001, () => {
+    console.log('Server running on http://localhost:1001/');
 });
 
 const MONGO_URL = 'mongodb+srv://Easeful5154:86MUCxra45GK*NKa$zqX@cluster0.nwhkgei.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';

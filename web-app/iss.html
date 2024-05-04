@@ -1,0 +1,51 @@
+<html>
+<head>
+    <script>
+        
+
+        function updateData(){
+            let gp = document.getElementById('ground_point');
+            let os = document.getElementById('orbital_speed');
+            let al = document.getElementById('altitude');
+
+            fetch('https://api.wheretheiss.at/v1/satellites/25544')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                gp.textContent = "Ground point: " + data.latitude + ", " + data.longitude;
+                os.textContent = "Orbital speed: " + data.velocity;
+                al.textContent = "Altitude: " + data.altitude;
+            });            
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(updateData, 1000);
+        });
+
+    </script>
+</head>
+<body>
+    <h1>ISS4U</h1>
+    
+    
+    <h2>Links: </h2>
+    <a href="index.html">Index</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register a user</a>
+    <a href="iss.html">ISS</a>
+    <a href="logged_in_page.html">Logged in Page</a>
+    <a href="page_goer.html">Page Goer</a>
+    <a href="add_task.html">Add Task</a>
+    <a href="visualize_tasks.html">Visualize Tasks</a>
+    
+    <h2>Normal content: </h2>
+    <p id = "ground_point">Ground point: </p>
+    <p id = "orbital_speed">Orbital speed: </p>
+    <p id = "altitude">Altitude: </p>
+    <form>
+        <button type = "submit">Update</button>
+    </form>
+    
+</body>
+</html>
+

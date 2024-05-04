@@ -11,7 +11,7 @@ export function change_text(id) {
     return __awaiter(this, void 0, void 0, function* () {
         const paragraph = document.getElementById(id);
         try {
-            const response = yield fetch('http://localhost:8080/users');
+            const response = yield fetch('http://localhost:1001/users');
             const data = yield response.json();
             const text = data[0].email;
             paragraph.textContent = text;
