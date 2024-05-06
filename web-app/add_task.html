@@ -1,4 +1,53 @@
 <html>
+<head>
+    <script>
+        function updateCheckboxValue(checkbox){
+            checkbox.value = checkbox.checked;
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                
+                // const file = document.querySelector('#file')
+                // formData.append('image', file.files[0], 'i')
+
+                for (item of formData) {
+                    console.log(item[0], item[1]);
+                }
+
+                const data = Object.fromEntries(formData);
+                console.log(data);
+
+                console.log(JSON.stringify(data));
+
+
+                // console.log("yeah");
+
+                fetch('http://localhost:1001/tasks', {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    // window.location.href = "logged_in_page.html";
+                })
+                .catch(error => {
+                    console.error('Error: ', error);
+                });
+            });
+        });
+
+    </script>
+</head>
 <body>
     <a href="index.html">Index</a>
     <a href="login.html">Login</a>
@@ -8,18 +57,19 @@
     <a href="page_goer.html">Page Goer</a>
     <a href="add_task.html">Add Task</a>
     <a href="visualize_tasks.html">Visualize Tasks</a>
+    <a href="delete_task.html">Delete Task</a>
     <form>
         <table> 
             <tr>
                 <td>Nome: </td>
                 <td>
-                    <input type = "text" name = "name">
+                    <input type = "text" name = "nome">
                 </td>
             </tr>
             <tr>
                 <td>Modulo di riferimento: </td>
                 <td>
-                    <input type = "text" name = "mod_rif">
+                    <input type = "text" name = "modulo_di_riferimento">
                 </td>
             </tr>
             <tr>
@@ -37,13 +87,13 @@
             <tr>
                 <td>Data fine: </td>
                 <td>
-                    <input type = "date" name = "data_inizio">
+                    <input type = "date" name = "data_fine">
                 </td>
             </tr>
             <tr>
                 <td>Completamento: </td>
                 <td>
-                    <input type = "checkbox" name = "completamento">
+                    <input type = "checkbox" name = "completamento" onchange="updateCheckboxValue(this)">
                 </td>
             </tr>
             <tr>
