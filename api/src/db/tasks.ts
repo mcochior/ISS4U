@@ -17,6 +17,6 @@ export const getTasks = () => TaskModel.find();
 export const getTaskByName = (nome: string) => TaskModel.findOne({nome});
 
 export const createTask = (values: Record<string, any>) => new TaskModel(values).save().then((task) => task.toObject());
-export const deleteTaskByNome = (nome: string) => TaskModel.findOneAndDelete({ _nome: nome});
+export const deleteTaskByNome = (nome: string) => TaskModel.findOneAndDelete({nome});
 export const updateTaskByNome = (nome: string, values: Record<string, any>) => TaskModel.findByIdAndUpdate(nome, values)
 

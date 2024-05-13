@@ -4,9 +4,9 @@ import {deleteTask, getAllTasks, makeTask, updateTask} from '../controllers/task
 import { isAuthenticated, isOwner } from '../middlewares';
 
 export default (router: express.Router) => {
-    router.get('/tasks', getAllTasks);
-    router.put('/tasks', makeTask);
-    router.delete('/tasks/:nome', deleteTask);
-    router.patch('/tasks/:nome', updateTask);
+    router.get('/tasks', isAuthenticated, getAllTasks);
+    router.put('/tasks', isAuthenticated, makeTask);
+    router.delete('/tasks/:nome', isAuthenticated, deleteTask);
+    router.patch('/tasks/:nome', isAuthenticated, updateTask);
 };
 
