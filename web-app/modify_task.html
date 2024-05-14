@@ -1,9 +1,11 @@
-<!-- index.html -->
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <script>
+        function updateCheckboxValue(checkbox){
+            checkbox.value = checkbox.checked;
+        }
+
+
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector('form');
             form.addEventListener('submit', (e) => {
@@ -19,18 +21,18 @@
                 }
 
                 const data = Object.fromEntries(formData);
+                console.log(data);
+
+                console.log(JSON.stringify(data));
 
 
-                const headers = {'Content-Type':'application/json'
-                    // 'Access-Control-Allow-Origin':'*',
-                    // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
-                }
+                // console.log("yeah");
 
-                fetch('http://localhost:1001/auth/login', {
-                    // mode: 'no-cors',
+                fetch(`http://localhost:1001/tasks/${data.nome}`, {
                     method: "POST",
-                    headers: headers,
-                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(data),
                 })
                 .then(res => res.json())
@@ -47,8 +49,6 @@
     </script>
 </head>
 <body>
-    <h1>Login</h1>
-    <h2>Links: </h2>
     <a href="index.html">Index</a>
     <a href="login.html">Login</a>
     <a href="register.html">Register a user</a>
@@ -59,52 +59,50 @@
     <a href="visualize_tasks.html">Visualize Tasks</a>
     <a href="delete_task.html">Delete Task</a>
     <a href="modify_task.html">Modify Task</a>
-    
-    <h2>Normal content: </h2>
-    <form action ="logged_in_page.html" method="POST">
+    <form>
         <table> 
             <tr>
-                <td>Name: </td>
+                <td>Nome: </td>
                 <td>
-                    <input type = "text" name = "name">
+                    <input type = "text" name = "nome">
                 </td>
             </tr>
             <tr>
-                <td>Surname: </td>
+                <td>Modulo di riferimento: </td>
                 <td>
-                    <input type = "text" name = "surname">
+                    <input type = "text" name = "modulo_di_riferimento">
                 </td>
             </tr>
             <tr>
-                <td>Date of Birth: </td>
+                <td>Descrizione: </td>
                 <td>
-                    <input type = "date" name = "dob">
+                    <input type = "text" name = "descrizione">
                 </td>
             </tr>
             <tr>
-                <td>Email: </td>
+                <td>Data inizio: </td>
                 <td>
-                    <input type = "email" name = "email" value = "cdeantonio@codes.com">
+                    <input type = "date" name = "data_inizio">
                 </td>
             </tr>
             <tr>
-                <td>Phone Number: </td>
+                <td>Data fine: </td>
                 <td>
-                    <input type = "tel" name = "phone_no">
+                    <input type = "date" name = "data_fine">
                 </td>
             </tr>
             <tr>
-                <td>Password: </td>
+                <td>Completamento: </td>
                 <td>
-                    <input type = "password" name = "password" value = "123">
+                    <input type = "checkbox" name = "completamento" onchange="updateCheckboxValue(this)">
                 </td>
             </tr>
-
             <tr>
-                <td><button type = "submit">Submit</button></td>
+                <td>
+                    <button type = "submit">Submit</button>
+                </td>
             </tr>
         </table>
     </form>
 </body>
 </html>
-
