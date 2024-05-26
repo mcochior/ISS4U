@@ -22,7 +22,7 @@
                 // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
             }
 
-            fetch('http://localhost:1001/users', {
+            fetch(`http://localhost:1001/users/${sessionToken}`, {
                 // mode: 'no-cors',
                 method: "POST",
                 headers: headers,
