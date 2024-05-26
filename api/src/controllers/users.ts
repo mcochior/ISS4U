@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { deleteUserById, getUserById, getUsers } from '../db/users';
+import { deleteUserById, getUserById, getUsers, getUserBySessionToken } from '../db/users';
 
 export const getAllUsers = async (req: express.Request, res:express.Response) => {
     try{
@@ -10,6 +10,27 @@ export const getAllUsers = async (req: express.Request, res:express.Response) =>
     } catch (error) {
         console.log(error);
         return res.sendStatus(400);
+    }
+}
+
+export const getUserBySesToken = async (req: express.Request, res:express.Response) => {
+    try {
+        const sessionToken = req.cookies['some-auth'];
+
+        if (!sessionToken) {
+            return res.sendStatus(403);
+        }
+
+        const existingUser = await getUserBySessionToken(sessionToken);
+
+        if (!existingUser) {
+            return res.sendStatus(403);
+        }
+
+        return existingUser;
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(400)
     }
 }
 

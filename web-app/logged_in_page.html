@@ -4,37 +4,40 @@
 <html lang="en">
 <head>
     <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+            const sessionToken = getCookie('some-auth');
+            console.log(sessionToken);
+            const data = {
+                sessionToken: sessionToken
+            };
 
-                const formData = new FormData(form);
-                
-                // const file = document.querySelector('#file')
-                // formData.append('image', file.files[0], 'i')
+            const headers = {'Content-Type':'application/json'
+                // 'Access-Control-Allow-Origin':'*',
+                // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
+            }
 
-                for (item of formData) {
-                    console.log(item[0], item[1]);
-                }
-
-                const data = Object.fromEntries(formData);
+            fetch('http://localhost:1001/users', {
+                // mode: 'no-cors',
+                method: "POST",
+                headers: headers,
+                credentials: 'include',
+                body: JSON.stringify(data),
+            })
+            .then(res => res.json())
+            .then(data => {
                 console.log(data);
-
-                console.log(JSON.stringify(data),)
-
-
-                // console.log("yeah");
-
-                fetch('http://localhost:1001/users', {
-                    method: "POST",
-                })
-                .then(res => res.json())
-                .then(data => console.log(data));
-                
+                // window.location.href = "logged_in_page.html";
+            })
+            .catch(error => {
+                console.error('Error: ', error);
             });
         });
-
     </script>
 </head>
 <body>
