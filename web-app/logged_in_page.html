@@ -13,9 +13,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const sessionToken = getCookie('some-auth');
             console.log(sessionToken);
-            const data = {
-                sessionToken: sessionToken
-            };
+
 
             const headers = {'Content-Type':'application/json'
                 // 'Access-Control-Allow-Origin':'*',
@@ -27,16 +25,26 @@
                 method: "POST",
                 headers: headers,
                 credentials: 'include',
-                body: JSON.stringify(data),
             })
-            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                console.log("res");
+                if (res.status == 403){
+                    window.location.replace("iss.html");
+                }
+                console.log(res.json());
+                
+            })
             .then(data => {
                 console.log(data);
+                console.log("data");
                 // window.location.href = "logged_in_page.html";
             })
             .catch(error => {
                 console.error('Error: ', error);
             });
+
+            console.log("end");
         });
     </script>
 </head>
