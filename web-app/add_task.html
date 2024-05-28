@@ -8,6 +8,34 @@
             checkbox.value = checkbox.checked;
         }
 
+        function populateSelect(stuff){
+            var seòect = document.getElementById("selectTecnico");
+            var options = fetch('http://localhost:1001/users', {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(data),
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    // window.location.href = "logged_in_page.html";
+                })
+                .catch(error => {
+                    console.error('Error: ', error);
+                });
+
+            for (var i = 0; i < options.length; i++){
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }
+        }
+
 
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector('form');
@@ -99,6 +127,12 @@
                 <td>Completamento: </td>
                 <td>
                     <input type = "checkbox" name = "completamento" onchange="updateCheckboxValue(this)">
+                </td>
+            </tr>
+            <tr>
+                <td>Tasks: </td>
+                <td>
+                    <input type = "dropdown" name = "tasks" onchange="updateCheckboxValue(this)">
                 </td>
             </tr>
             <tr>
