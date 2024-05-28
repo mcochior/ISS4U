@@ -26,7 +26,7 @@
                     // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
                 }
 
-                fetch('http://localhost:1001/auth/login', {
+                fetch('http://localhost:1001/auth/register', {
                     // mode: 'no-cors',
                     method: "POST",
                     headers: headers,
@@ -47,7 +47,7 @@
     </script>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>Register</h1>
     <h2>Links: </h2>
     <a href="index.html">Index</a>
     <a href="login.html">Login</a>
@@ -66,13 +66,13 @@
             <tr>
                 <td>Name: </td>
                 <td>
-                    <input type = "text" name = "name">
+                    <input type = "text" name = "name" value = "a">
                 </td>
             </tr>
             <tr>
                 <td>Surname: </td>
                 <td>
-                    <input type = "text" name = "surname">
+                    <input type = "text" name = "surname" value = "a">
                 </td>
             </tr>
             <tr>
@@ -84,7 +84,7 @@
             <tr>
                 <td>Email: </td>
                 <td>
-                    <input type = "email" name = "email" value = "cdeantonio@codes.com">
+                    <input type = "email" name = "email">
                 </td>
             </tr>
             <tr>
@@ -96,7 +96,7 @@
             <tr>
                 <td>Password: </td>
                 <td>
-                    <input type = "password" name = "password" value = "123">
+                    <input type = "password" name = "password" value = "a">
                 </td>
             </tr>
 

@@ -20,3 +20,4 @@ export const createTask = (values: Record<string, any>) => new TaskModel(values)
 export const deleteTaskByNome = (nome: string) => TaskModel.findOneAndDelete({nome});
 export const updateTaskByNome = (nome: string, values: Record<string, any>) => TaskModel.findByIdAndUpdate(nome, values)
 
+export default TaskModel;

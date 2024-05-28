@@ -5,6 +5,50 @@
 <head>
     <script type="text/javascript" src="ts/kick_out.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                
+                // const file = document.querySelector('#file')
+                // formData.append('image', file.files[0], 'i')
+
+                for (item of formData) {
+                    console.log(item[0], item[1]);
+                }
+
+                const data = Object.fromEntries(formData);
+
+
+                const headers = {'Content-Type':'application/json'
+                    // 'Access-Control-Allow-Origin':'*',
+                    // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
+                }
+
+                fetch('http://localhost:1001/auth/login', {
+                    // mode: 'no-cors',
+                    method: "POST",
+                    headers: headers,
+                    credentials: 'include',
+                    body: JSON.stringify(data),
+                })
+                .then(res => {
+                    res.json();
+                    if (res.status != 400) {
+                        window.location.replace("logged_in_page.html");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error: ', error);
+                });
+            });
+        });
+
+    </script>
+
 </head>
 <body>
     <h1>Login</h1>
@@ -42,7 +86,7 @@
                 </td>
             </tr>
             <tr>
-                <td><button type = "button" onclick = "printAlert('cuh')">Cool!</button></td>
+                <td><button type = "submit">Submit</button></td>
             </tr>
 
         </table>
