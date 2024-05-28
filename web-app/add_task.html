@@ -1,9 +1,10 @@
 <html>
 <head>
-    <script type="text/javascript" src="ts/kick_out.js"></script>
+    <script type="text/javascript" src="ts/kick_out_unauth.js"></script>
 
     <script>
         function updateCheckboxValue(checkbox){
+            
             checkbox.value = checkbox.checked;
         }
 
@@ -35,6 +36,7 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    credentials: 'include',
                     body: JSON.stringify(data),
                 })
                 .then(res => res.json())
