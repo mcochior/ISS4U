@@ -7,6 +7,7 @@ const TaskSchema = new mongoose.Schema({
     data_inizio: { type: Date, required: true },
     data_fine: { type: Date, required: true },
     completamento: { type: Boolean, required: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 
 
 });

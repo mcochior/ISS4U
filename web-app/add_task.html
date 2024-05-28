@@ -8,36 +8,43 @@
             checkbox.value = checkbox.checked;
         }
 
-        function populateSelect(stuff){
-            var seòect = document.getElementById("selectTecnico");
-            var options = fetch('http://localhost:1001/users', {
-                    method: "PUT",
+        function populateSelect(){
+            var select = document.getElementById("surname_and_name");
+            fetch('http://localhost:1001/users', {
+                    method: "GET",
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     credentials: 'include',
-                    body: JSON.stringify(data),
                 })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
+                    var options = data
+                    for (var i = 0; i < options.length; i++){
+                        var opt = options[i];
+                        var el = document.createElement("option");
+                        el.textContent = opt.surname + "|" + opt.name;
+                        el.value = opt.surname + "|" + opt.name;
+                        select.appendChild(el);
+                        console.log(el);
+                    }
                     // window.location.href = "logged_in_page.html";
                 })
                 .catch(error => {
                     console.error('Error: ', error);
                 });
 
-            for (var i = 0; i < options.length; i++){
-                var opt = options[i];
-                var el = document.createElement("option");
-                el.textContent = opt;
-                el.value = opt;
-                select.appendChild(el);
-            }
+            
         }
+
+        
 
 
         document.addEventListener('DOMContentLoaded', () => {
+            populateSelect();
+
+
             const form = document.querySelector('form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -132,7 +139,9 @@
             <tr>
                 <td>Tasks: </td>
                 <td>
-                    <input type = "dropdown" name = "tasks" onchange="updateCheckboxValue(this)">
+                    <select name = "surname_and_name" id="surname_and_name">
+
+                    </select>
                 </td>
             </tr>
             <tr>
