@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { deleteUserById, getUserById, getUsers, getUserBySessionToken, deleteUserByNameAndSurname } from '../db/users';
+import { deleteUserById, getUserById, getUsers, getUserBySessionToken, deleteUserByNameAndSurname, getUserByNameAndSurname } from '../db/users';
 
 export const getAllUsers = async (req: express.Request, res:express.Response) => {
     try{
@@ -10,6 +10,28 @@ export const getAllUsers = async (req: express.Request, res:express.Response) =>
     } catch (error) {
         console.log(error);
         return res.sendStatus(400);
+    }
+}
+
+export const getUserBySurnameAndName = async (req: express.Request, res:express.Response) => {
+    try {
+        const { name, surname } = req.body;
+
+
+        if (!name || !surname) {
+            return res.sendStatus(403);
+        }
+
+        const existingUser = await getUserByNameAndSurname(name, surname);
+
+        if (!existingUser) {
+            return res.sendStatus(403);
+        }
+
+        return existingUser;
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(400)
     }
 }
 

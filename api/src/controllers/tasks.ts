@@ -35,9 +35,9 @@ export const getTask = async (req: express.Request, res:express.Response) => {
 
 export const makeTask = async (req: express.Request, res: express.Response) => {
     try {
-        const { nome, modulo_di_riferimento, descrizione, data_inizio, data_fine, completamento, surname_and_name } = req.body;
+        const { nome, modulo_di_riferimento, descrizione, data_inizio, data_fine, completamento, user_id } = req.body;
 
-        if (!nome || !modulo_di_riferimento || !descrizione || !data_inizio || !data_fine || !completamento || !surname_and_name) {
+        if (!nome || !modulo_di_riferimento || !descrizione || !data_inizio || !data_fine || !completamento || !user_id) {
             return res.sendStatus(400);
         }
 
@@ -53,7 +53,8 @@ export const makeTask = async (req: express.Request, res: express.Response) => {
             descrizione,
             data_inizio,
             data_fine,
-            completamento
+            completamento,
+            user_id
         });
 
         return res.status(200).json(task).end();
