@@ -92,7 +92,7 @@
                     throw new Error('Network response was not ok')
                 };
 
-                const data2= await response.json();
+                const data2 = await response.json();
                 data.user_id = data2;
                 console.log(data);
 
@@ -100,7 +100,7 @@
 
                 // console.log(datum);
 
-                const response2= fetch('http://localhost:1001/tasks', {
+                const response2 = fetch('http://localhost:1001/tasks', {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/json'
