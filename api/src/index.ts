@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
-server.listen(1001, () => {
+const hey = server.listen(1001, () => {
     console.log('Server running on http://localhost:1001/');
 });
 
@@ -46,4 +46,6 @@ mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error: Error) => console.log(error));
 
 app.use('/', router());
+
+module.exports = hey;
 
