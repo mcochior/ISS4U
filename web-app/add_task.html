@@ -50,6 +50,12 @@
                 e.preventDefault();
 
                 const formData = new FormData(form);
+
+                const checkbox = document.querySelector('input[name="completamento"]');
+
+                if (!checkbox.checked) {
+                    formData.append('completamento', 'false');
+                }
                 
                 // const file = document.querySelector('#file')
                 // formData.append('image', file.files[0], 'i')
