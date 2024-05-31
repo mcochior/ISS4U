@@ -7,8 +7,39 @@
             checkbox.value = checkbox.checked;
         }
 
+        function populateSelect(){
+            var select = document.getElementById("user_id");
+            fetch('http://localhost:1001/users', {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    var options = data
+                    for (var i = 0; i < options.length; i++){
+                        var opt = options[i];
+                        var el = document.createElement("option");
+                        el.textContent = opt.surname + "|" + opt.name;
+                        el.value = opt.surname + "|" + opt.name;
+                        select.appendChild(el);
+                        console.log(el);
+                    }
+                    // window.location.href = "logged_in_page.html";
+                })
+                .catch(error => {
+                    console.error('Error: ', error);
+                });
+
+            
+        }
+
 
         document.addEventListener('DOMContentLoaded', () => {
+            populateSelect();
             const form = document.querySelector('form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -30,8 +61,8 @@
 
                 // console.log("yeah");
 
-                fetch(`http://localhost:1001/tasks/${data.nome}`, {
-                    method: "POST",
+                fetch(`http://localhost:1001/tasks`, {
+                    method: "PATCH",
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -63,6 +94,12 @@
     <a href="modify_task.html">Modify Task</a>
     <form>
         <table> 
+            <tr>
+                <td>Task Id: </td>
+                <td>
+                    <input type = "text" name = "task_id" value = "66597eb0d6d6218aa4b28bd7">
+                </td>
+            </tr>
             <tr>
                 <td>Nome: </td>
                 <td>
@@ -97,6 +134,14 @@
                 <td>Completamento: </td>
                 <td>
                     <input type = "checkbox" name = "completamento" onchange="updateCheckboxValue(this)">
+                </td>
+            </tr>
+            <tr>
+                <td>User: </td>
+                <td>
+                    <select name = "user_id" id="user_id">
+
+                    </select>
                 </td>
             </tr>
             <tr>

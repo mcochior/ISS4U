@@ -28,7 +28,7 @@ export const getUserBySurnameAndName = async (req: express.Request, res:express.
             return res.sendStatus(403);
         }
 
-        return existingUser;
+        return res.status(200).json(existingUser._id);;
     } catch (error) {
         console.log(error);
         return res.sendStatus(400)
@@ -49,7 +49,7 @@ export const getUserBySesToken = async (req: express.Request, res:express.Respon
             return res.sendStatus(403);
         }
 
-        return existingUser;
+        return res.status(200).json(existingUser);
     } catch (error) {
         console.log(error);
         return res.sendStatus(400)
@@ -80,7 +80,7 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
 
         const user = await getUserById(id);
 
-        user.username = username;
+        // user.username = username;
         await user.save();
 
         return res.status(200).json(user).end();

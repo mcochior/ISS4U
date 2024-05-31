@@ -8,12 +8,14 @@
 
             for (var i = 0; i < data.length; i++){
                 var row =  `<tr>
+                                <td>${data[i]._id}</td>
                                 <td>${data[i].nome}</td>
                                 <td>${data[i].modulo_di_riferimento}</td>
                                 <td>${data[i].descrizione}</td>
                                 <td>${data[i].data_inizio}</td>
                                 <td>${data[i].data_fine}</td>
                                 <td>${data[i].completamento}</td>
+                                <td>${data[i].user_id}</td>
                             </tr>`;
                 table.innerHTML += row;
             }
@@ -46,12 +48,15 @@
     <a href="modify_task.html">Modify Task</a>
     <table class = "table table-striped">
         <tr class = "bg-info">
+            <th>Task ID</th>
             <th>Nome</th>
             <th>MdR</th>
             <th>Descrizione</th>
             <th>Data Inizio</th>
             <th>Data Fine</th>
             <th>Completamento</th>
+            <th>User Id</th>
+            <th>Modify</th>
         </tr>
 
         <tbody id="content">
