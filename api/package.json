@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --config ./jest.config.js --env=jsdom",
     "start": "node src/index.ts"
   },
   "keywords": [],
