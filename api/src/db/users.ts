@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
         salt: { type: String, select: false },
         sessionToken: { type: String, select: false },
     },
+    type: { type: String }
 });
 
 export const UserModel = mongoose.model('User', UserSchema)
