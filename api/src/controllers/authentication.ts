@@ -5,7 +5,7 @@ import { authentication, random } from '../helpers'
 
 export const login = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Authentication']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Allows a user to login.'
     try{
         const { name, surname, password } = req.body;
 
@@ -44,7 +44,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
 export const register = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Authentication']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Allows an admin to register a new non-admin user.'
     try {
         const { email, password, name, surname, dob, phone_no } = req.body;
 

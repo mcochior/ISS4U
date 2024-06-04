@@ -16,7 +16,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Gets all   users.",
+        "description": "Allows an admin to register a new non-admin user.",
         "parameters": [
           {
             "name": "body",
@@ -64,7 +64,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Gets all registered users.",
+        "description": "Allows a user to login.",
         "parameters": [
           {
             "name": "body",
@@ -103,7 +103,7 @@
         "tags": [
           "Tasks"
         ],
-        "description": "Gets all registered users.",
+        "description": "Gets all tasks in the database",
         "responses": {
           "200": {
             "description": "OK"
@@ -120,7 +120,7 @@
         "tags": [
           "Tasks"
         ],
-        "description": "Gets all registered users.",
+        "description": "Creates a new Task",
         "parameters": [
           {
             "name": "body",
@@ -166,7 +166,7 @@
         "tags": [
           "Tasks"
         ],
-        "description": "Gets all registered users.",
+        "description": "Updates a task given the task_id (this allows for on to also change the name of the task).",
         "parameters": [
           {
             "name": "body",
@@ -220,7 +220,7 @@
         "tags": [
           "Tasks"
         ],
-        "description": "Gets all registered users.",
+        "description": "Gets a single task using its name",
         "parameters": [
           {
             "name": "nome",
@@ -245,7 +245,7 @@
         "tags": [
           "Tasks"
         ],
-        "description": "Gets all registered users.",
+        "description": "Deletes a task given a name.",
         "parameters": [
           {
             "name": "nome",
@@ -289,7 +289,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Gets all registered users.",
+        "description": "Deletes a user given their name and surname.",
         "parameters": [
           {
             "name": "body",
@@ -323,7 +323,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Gets all registered users.",
+        "description": "Updates a user.",
         "parameters": [
           {
             "name": "body",
@@ -356,7 +356,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Gets all registered users.",
+        "description": "Gets a user by their username and name.",
         "parameters": [
           {
             "name": "body",
@@ -392,7 +392,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Gets all registered users.",
+        "description": "Gets a user by their session token.",
         "parameters": [
           {
             "name": "session_token",

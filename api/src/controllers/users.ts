@@ -17,7 +17,7 @@ export const getAllUsers = async (req: express.Request, res:express.Response) =>
 
 export const getUserBySurnameAndName = async (req: express.Request, res:express.Response) => {
     // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Gets a user by their username and name.'
     try {
         const { name, surname } = req.body;
 
@@ -41,7 +41,7 @@ export const getUserBySurnameAndName = async (req: express.Request, res:express.
 
 export const getUserBySesToken = async (req: express.Request, res:express.Response) => {
     // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Gets a user by their session token.'
     try {
         const sessionToken = req.cookies['some-auth'];
 
@@ -64,7 +64,7 @@ export const getUserBySesToken = async (req: express.Request, res:express.Respon
 
 export const deleteUser = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Deletes a user given their name and surname.'
     try{
         const { name, surname } = req.body;
 
@@ -79,7 +79,7 @@ export const deleteUser = async (req: express.Request, res: express.Response) =>
 
 export const updateUser = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Updates a user.'
     try{
         const {id} = req.params;
         const {username} = req.body;

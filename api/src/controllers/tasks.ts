@@ -4,7 +4,7 @@ import { getTasks, getTaskByName, createTask, deleteTaskByNome, getTaskById } fr
 
 export const getAllTasks = async (req: express.Request, res:express.Response) => {
     // #swagger.tags = ['Tasks']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Gets all tasks in the database'
     try{
         const users = await getTasks();
 
@@ -17,7 +17,7 @@ export const getAllTasks = async (req: express.Request, res:express.Response) =>
 
 export const getTask = async (req: express.Request, res:express.Response) => {
     // #swagger.tags = ['Tasks']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Gets  a single task using its name'
     try{
         const { nome } = req.params;
 
@@ -39,7 +39,7 @@ export const getTask = async (req: express.Request, res:express.Response) => {
 
 export const makeTask = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Tasks']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Creates a new Task'
     try {
         const { nome, modulo_di_riferimento, descrizione, data_inizio, data_fine, user_id } = req.body;
 
@@ -75,7 +75,7 @@ export const makeTask = async (req: express.Request, res: express.Response) => {
 
 export const deleteTask = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Tasks']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Deletes a task given a name.'
     try{
         const { nome } = req.params;
 
@@ -90,7 +90,7 @@ export const deleteTask = async (req: express.Request, res: express.Response) =>
 
 export const updateTask = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Tasks']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Updates a task given the task_id (this allows for on to also change the name of the task).'
     try{
         // const {nome} = req.params; //find a way to also change name
         const { task_id, nome, modulo_di_riferimento, descrizione, data_inizio, data_fine, completamento, user_id } = req.body;
