@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --config ./jest.config.js --env=jsdom",
     "start": "node src/index.ts",
+    "start-gendoc": "node swagger.js",
     "swagger": "node ./swagger.js"
   },
   "keywords": [],
@@ -35,7 +36,9 @@
     "esm": "^3.2.25",
     "express": "^4.19.2",
     "lodash": "^4.17.21",
-    "mongoose": "^8.3.2"
+    "mongoose": "^8.3.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "type": "module"
 }

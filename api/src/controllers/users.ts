@@ -17,7 +17,7 @@ export const getAllUsers = async (req: express.Request, res:express.Response) =>
 
 export const getUserBySurnameAndName = async (req: express.Request, res:express.Response) => {
     // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Gets a user by their username and name.'
     try {
         const { name, surname } = req.body;
 
@@ -41,61 +41,22 @@ export const getUserBySurnameAndName = async (req: express.Request, res:express.
 
 export const getUserBySesToken = async (req: express.Request, res:express.Response) => {
     // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Gets a user by their session token.'
     try {
-        const sessionToken = req.cookies['some-auth'];
+        const {session_token} = req.body;
 
-        if (!sessionToken) {
-            return res.sendStatus(403);
+        if (!session_token) {
+            return res.sendStatus(404);
         }
 
-        const existingUser = await getUserBySessionToken(sessionToken);
+        const existingUser = await getUserBySessionToken(session_token);
 
         if (!existingUser) {
-            return res.sendStatus(403);
+            return res.sendStatus(404);
         }
 
         return res.status(200).json(existingUser);
     } catch (error) {
-        console.log(error);
-        return res.sendStatus(400)
-    }
-}
-
-export const deleteUser = async (req: express.Request, res: express.Response) => {
-    // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
-    try{
-        const { name, surname } = req.body;
-
-        const deletedUser = await deleteUserByNameAndSurname(name, surname);
-
-        return res.json(deletedUser);
-    } catch (error) {
-        console.log(error);
-        return res.sendStatus(400);
-    }
-}
-
-export const updateUser = async (req: express.Request, res: express.Response) => {
-    // #swagger.tags = ['Users']
-    // #swagger.description = 'Gets all registered users.'
-    try{
-        const {id} = req.params;
-        const {username} = req.body;
-
-        if (!username) {
-            return res.sendStatus(400);
-        }
-
-        const user = await getUserById(id);
-
-        // user.username = username;
-        await user.save();
-
-        return res.status(200).json(user).end();
-
-    } catch(error) {
         console.log(error);
         return res.sendStatus(400)
     }

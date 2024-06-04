@@ -1,11 +1,12 @@
-import { getUserByEmail, createUser, getUserByNameAndSurname } from '../db/users';
+import { getUserByEmail, createUser, getUserByNameAndSurname, getUserBySessionToken } from '../db/users';
 import express from 'express'
 
 import { authentication, random } from '../helpers'
+import { getUserBySesToken } from './users';
 
 export const login = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Authentication']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Allows a user to login.'
     try{
         const { name, surname, password } = req.body;
 
@@ -42,9 +43,41 @@ export const login = async (req: express.Request, res: express.Response) => {
     }
 }
 
+export const logout = async (req: express.Request, res: express.Response) => {
+    // #swagger.tags = ['Authentication']
+    // #swagger.description = 'Logs out a user given their session token.'
+    try{
+        const { session_token } = req.body;
+
+        if(!session_token){
+            return res.sendStatus(400);
+        }
+
+        const user = await getUserBySessionToken(session_token);
+
+        if (!user) {
+            return res.sendStatus(400);
+        }
+
+        // delete user.authentication.sessionToken;
+
+        user.authentication.sessionToken = undefined;
+
+        await user.save();
+
+        res.clearCookie('some-auth', { domain: "localhost", path: "/"})
+
+        
+        return res.status(200).json(user).end();
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(400);
+    }
+}
+
 export const register = async (req: express.Request, res: express.Response) => {
     // #swagger.tags = ['Authentication']
-    // #swagger.description = 'Gets all registered users.'
+    // #swagger.description = 'Allows an admin to register a new non-admin user.'
     try {
         const { email, password, name, surname, dob, phone_no } = req.body;
 

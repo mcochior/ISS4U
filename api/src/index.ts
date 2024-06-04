@@ -10,6 +10,10 @@ import router from './router'
 
 
 const app = express();
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger-output.json'; // Adjust the path
+
+
 
 // app.use(cors({
 //     // origin: 'http://localhost:8080'
@@ -32,6 +36,8 @@ app.use((req, res, next) => {
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 const server = http.createServer(app);
 
