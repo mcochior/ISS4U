@@ -9,19 +9,22 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(sessionToken);
 
 
+    const data = {
+        "session_token": sessionToken
+    }
+
+
     const headers = {'Content-Type':'application/json'
         // 'Access-Control-Allow-Origin':'*',
         // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
     }
 
-    bruh = "";
-    bruh2 = "";
-
-    fetch(`http://localhost:1001/users/${sessionToken}`, {
+    fetch(`http://localhost:1001/users`, {
         // mode: 'no-cors',
         method: "POST",
         headers: headers,
         credentials: 'include',
+        body: JSON.stringify(data)
     })
     .then(res => {
         console.log("NICE");
