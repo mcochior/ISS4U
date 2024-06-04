@@ -4,6 +4,8 @@ import express from 'express'
 import { authentication, random } from '../helpers'
 
 export const login = async (req: express.Request, res: express.Response) => {
+    // #swagger.tags = ['Authentication']
+    // #swagger.description = 'Gets all registered users.'
     try{
         const { name, surname, password } = req.body;
 
@@ -41,6 +43,8 @@ export const login = async (req: express.Request, res: express.Response) => {
 }
 
 export const register = async (req: express.Request, res: express.Response) => {
+    // #swagger.tags = ['Authentication']
+    // #swagger.description = 'Gets all registered users.'
     try {
         const { email, password, name, surname, dob, phone_no } = req.body;
 

@@ -3,6 +3,8 @@ import express from 'express';
 import { getTasks, getTaskByName, createTask, deleteTaskByNome, getTaskById } from '../db/tasks';
 
 export const getAllTasks = async (req: express.Request, res:express.Response) => {
+    // #swagger.tags = ['Tasks']
+    // #swagger.description = 'Gets all registered users.'
     try{
         const users = await getTasks();
 
@@ -14,6 +16,8 @@ export const getAllTasks = async (req: express.Request, res:express.Response) =>
 }
 
 export const getTask = async (req: express.Request, res:express.Response) => {
+    // #swagger.tags = ['Tasks']
+    // #swagger.description = 'Gets all registered users.'
     try{
         const { nome } = req.params;
 
@@ -34,6 +38,8 @@ export const getTask = async (req: express.Request, res:express.Response) => {
 
 
 export const makeTask = async (req: express.Request, res: express.Response) => {
+    // #swagger.tags = ['Tasks']
+    // #swagger.description = 'Gets all registered users.'
     try {
         const { nome, modulo_di_riferimento, descrizione, data_inizio, data_fine, user_id } = req.body;
 
@@ -68,6 +74,8 @@ export const makeTask = async (req: express.Request, res: express.Response) => {
 }
 
 export const deleteTask = async (req: express.Request, res: express.Response) => {
+    // #swagger.tags = ['Tasks']
+    // #swagger.description = 'Gets all registered users.'
     try{
         const { nome } = req.params;
 
@@ -81,6 +89,8 @@ export const deleteTask = async (req: express.Request, res: express.Response) =>
 }
 
 export const updateTask = async (req: express.Request, res: express.Response) => {
+    // #swagger.tags = ['Tasks']
+    // #swagger.description = 'Gets all registered users.'
     try{
         // const {nome} = req.params; //find a way to also change name
         const { task_id, nome, modulo_di_riferimento, descrizione, data_inizio, data_fine, completamento, user_id } = req.body;
