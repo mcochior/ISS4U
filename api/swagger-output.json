@@ -289,11 +289,7 @@
         "tags": [
           "Users"
         ],
-<<<<<<< HEAD
-        "description": "Gets a user by their session token.",
-=======
         "description": "Deletes a user given their name and surname.",
->>>>>>> 8a78457be99d4f89b6a50f62110c2f16beb599c9
         "parameters": [
           {
             "name": "body",
@@ -317,8 +313,6 @@
           },
           "403": {
             "description": "Forbidden"
-<<<<<<< HEAD
-=======
           }
         }
       },
@@ -344,7 +338,6 @@
         "responses": {
           "200": {
             "description": "OK"
->>>>>>> 8a78457be99d4f89b6a50f62110c2f16beb599c9
           },
           "404": {
             "description": "Not Found"
@@ -387,8 +380,6 @@
           }
         }
       }
-<<<<<<< HEAD
-=======
     },
     "/users/{session_token}": {
       "post": {
@@ -416,7 +407,6 @@
           }
         }
       }
->>>>>>> 8a78457be99d4f89b6a50f62110c2f16beb599c9
     }
   }
 }
