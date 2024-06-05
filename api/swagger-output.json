@@ -98,6 +98,39 @@
         }
       }
     },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Logs out a user given their session token.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "session_token": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/tasks": {
       "get": {
         "tags": [
@@ -289,7 +322,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Deletes a user given their name and surname.",
+        "description": "Gets a user by their session token.",
         "parameters": [
           {
             "name": "body",
@@ -313,31 +346,6 @@
           },
           "403": {
             "description": "Forbidden"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Users"
-        ],
-        "description": "Updates a user.",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           },
           "404": {
             "description": "Not Found"
@@ -366,33 +374,6 @@
                 }
               }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "/users/{session_token}": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "description": "Gets a user by their session token.",
-        "parameters": [
-          {
-            "name": "session_token",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {

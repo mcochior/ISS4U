@@ -15,5 +15,5 @@ const routes = ['src/router/authentication.ts', 'src/router/index.ts', 'src/rout
 root file where the route starts, such as index.js, app.js, routes.js, etc ... */
 
 swaggerAutogen()(outputFile, routes, doc).then(async () => {
-    await import('./index.js'); // Your project's root file
+    await import('./src/index.ts'); // Your project's root file
   });
