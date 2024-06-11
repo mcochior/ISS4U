@@ -4,7 +4,7 @@ import {deleteTask, getAllTasks, getTask, makeTask, updateTask} from '../control
 import { isAuthenticated, isOwner } from '../middlewares';
 
 export default (router: express.Router) => {
-    router.get('/tasks', isAuthenticated, getAllTasks);
+    router.get('/tasks', getAllTasks);
     router.get('/tasks/:nome', isAuthenticated, getTask);
     router.put('/tasks', isAuthenticated, makeTask);
     router.delete('/tasks/:nome', isAuthenticated, deleteTask);
