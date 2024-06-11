@@ -53,4 +53,5 @@ mongoose.connection.on('error', (error: Error) => console.log(error));
 
 app.use('/', router());
 
-module.exports = hey;
+
+export default app

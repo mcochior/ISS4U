@@ -2,8 +2,8 @@
 // import request from 'supertest'
 // import app from './app.js'
 
-const request = require('supertest');
-const app = require('../../src/controllers/tasks.ts');
+import request from 'supertest';
+import app from '../../src/index.ts';
 
 describe("POST /tasks", () => {
     describe("Given a task id", () => {
