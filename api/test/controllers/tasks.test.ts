@@ -26,9 +26,26 @@ import app from '../../src/index.ts';
 // })
 
 describe("GET /tasks", () => {
+    let authToken;
+    beforeAll(async () => {
+        const authResponse = await request(app)
+            .post('/auth/login')
+            .send({
+                name: 'k',
+                surname: 'k',
+                password: 'a'
+            });
+
+       authToken = authResponse.headers['set-cookie'];
+    });
     describe("Get all tasks", () => {
         test("Should respond with a 200 status code", async () => {
-            const response = await request(app).get("/tasks").send({})
+
+            const response = await request(app)
+                .get("/tasks")
+                .set('Cookie', authToken);
+
+
             expect(response.statusCode).toBe(200)
         })
     })
