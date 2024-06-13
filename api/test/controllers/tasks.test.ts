@@ -4,28 +4,11 @@
 
 import request from 'supertest';
 import app from '../../src/index.ts';
+import TaskModel from '../../src/db/tasks.ts';
 
-// describe("POST /tasks", () => {
-//     describe("Given a task id", () => {
-//         test("Should respond with a 200 status code", async () => {
-//             const response = await request(app).post("/users").send({
-//                 nome: "1",
-//                 modulo_di_riferimento: "1",
-//                 descrizione: "1",
-//                 data_inizio: "2024-05-01",
-//                 data_fine: "2024-05-31",
-//                 user_id: "6655a6c9fe2b0bd65e113653"
-//             })
-//             expect(response.statusCode).toBe(200)
-//         })
-//     })
+// jest.mock('../../src/db/tasks.ts')
 
-//     describe("When the task id is missing", () => {
-
-//     })
-// })
-
-describe("GET /tasks", () => {
+describe("Tasks", () => {
     let authToken;
     beforeAll(async () => {
         const authResponse = await request(app)
@@ -48,9 +31,75 @@ describe("GET /tasks", () => {
 
             expect(response.statusCode).toBe(200)
         })
-    })
+    });
 
-    describe("When the task id is missing", () => {
+    describe("Get specific task", () => {
+        test("Should respond with a 200 status code", async () => {
 
-    })
-})
+            const response = await request(app)
+                .get("/tasks")
+                .set('Cookie', authToken)
+                .send({
+                    task_id: '666afc5bd4a65c3f16a8d1ef'
+                });
+
+
+            expect(response.statusCode).toBe(200)
+        })
+    });
+
+    describe("Add Task", () => {
+        test("Should respond with a 200 status code", async () => {
+            const newTask = {
+                nome: "trttt",
+                modulo_di_riferimento: "15",
+                descrizione: "15",
+                data_inizio: "2024-05-01",
+                data_fine: "2024-05-31",
+                user_id: "6655a6c9fe2b0bd65e113653"
+            }
+            
+            const response = await request(app)
+                .put(`/tasks`)
+                .set('Cookie', authToken)
+                .send(newTask);
+
+            expect(response.statusCode).toBe(200)
+        })
+    });
+
+    describe("Modify Task", () => {
+        test("Should respond with a 200 status code", async () => {
+            const newTask = {
+                task_id: "666afc5bd4a65c3f16a8d1ef",
+                nome: "modified",
+                modulo_di_riferimento: "modified",
+                descrizione: "modified",
+                data_inizio: "2024-05-01",
+                data_fine: "2024-05-31",
+                completamento: true,
+                user_id: "665d66e7e000496d76e89e86"
+            }
+            
+            const response = await request(app)
+                .patch(`/tasks`)
+                .set('Cookie', authToken)
+                .send(newTask);
+
+            expect(response.statusCode).toBe(200)
+        })
+    });
+
+
+    describe("Delete Task", () => {
+        test("Should respond with a 200 status code", async () => {
+
+            
+            const response = await request(app)
+                .delete(`/tasks/trttt`)
+                .set('Cookie', authToken);
+
+            expect(response.statusCode).toBe(200);
+        })
+    });
+});
