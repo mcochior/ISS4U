@@ -100,7 +100,7 @@
 
                 // console.log(datum);
 
-                const response2 = fetch('http://localhost:1001/tasks', {
+                const response2 = await fetch('http://localhost:1001/tasks', {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/json'
@@ -108,9 +108,14 @@
                     credentials: 'include',
                     body: JSON.stringify(data),
                 });
+
+                console.log(response2);
                 
                 if (!response2.ok) {
                     throw new Error('Not nice :(');
+                }
+                else{
+                    window.alert("Task added successfully");
                 }
 
                 const result = await response2.json();
