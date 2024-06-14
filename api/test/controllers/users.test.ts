@@ -39,7 +39,22 @@ describe("Users", () => {
 
 
             expect(response.statusCode).toBe(200)
-        })
+        });
+
+        test("Should respond with a 403 status code", async () => {
+            const stuffToSend = {
+                "namdsadsae": "e",
+                "surndaame": "e"
+            }
+
+            const response = await request(app)
+                .post("/users/getIdByNameAndSurname")
+                .set('Cookie', authToken)
+                .send(stuffToSend);
+
+
+            expect(response.statusCode).toBe(403)
+        });
     });
 
     describe("Gets user by session token", () => {
@@ -55,7 +70,21 @@ describe("Users", () => {
 
 
             expect(response.statusCode).toBe(200)
-        })
+        });
+
+        test("Should respond with a 404 status code", async () => {
+            const stuffToSend = {
+                "sessiondsadsdas_token": extractAuthToken(authToken[0])
+            }
+
+            const response = await request(app)
+                .post("/users")
+                .set('Cookie', authToken)
+                .send(stuffToSend);
+
+
+            expect(response.statusCode).toBe(404)
+        });
     });
 
 

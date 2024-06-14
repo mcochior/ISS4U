@@ -23,7 +23,7 @@ export const getTask = async (req: express.Request, res:express.Response) => {
 
         const task = await getTaskByName(nome);
         
-        if (task) {
+        if (!task) {
             return res.sendStatus(400);
         }
 
