@@ -5,10 +5,10 @@ import TaskModel from '../../src/db/tasks.ts';
 // jest.mock('../../src/db/tasks.ts')
 
 
-const extractAuthToken = (cookieString) => {
+const extractAuthToken = (cookieString: string) => {
     const match = cookieString.match(/some-auth=([^;]+)/);
     return match ? match[1] : null;
-  };
+}
   
 
 describe("Users", () => {
@@ -45,11 +45,11 @@ describe("Users", () => {
     describe("Gets user by session token", () => {
         test("Should respond with a 200 status code", async () => {
             const stuffToSend = {
-                "session_token": extractAuthToken(authToken)
+                "session_token": extractAuthToken(authToken[0])
             }
 
             const response = await request(app)
-                .post("/users/")
+                .post("/users")
                 .set('Cookie', authToken)
                 .send(stuffToSend);
 

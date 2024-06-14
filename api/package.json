@@ -47,7 +47,8 @@
     "supertest": "^7.0.0",
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "test": "^3.3.0"
   },
   "type": "module"
 }
