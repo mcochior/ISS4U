@@ -40,10 +40,18 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 const server = http.createServer(app);
+const port = 0;
+if (process.env.NODE_ENV == 'test') {
+    server.listen(port, () => {
+        console.log(`Listening on port ${port}`)
+    });
+}
+else{
+    const hey = server.listen(1001, () => {
+        console.log('Server running on http://localhost:1001/');
+    });
+}
 
-const hey = server.listen(1001, () => {
-    console.log('Server running on http://localhost:1001/');
-});
 
 const MONGO_URL = 'mongodb+srv://Easeful5154:86MUCxra45GK*NKa$zqX@cluster0.nwhkgei.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 

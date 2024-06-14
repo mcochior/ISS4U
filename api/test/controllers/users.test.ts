@@ -9,7 +9,7 @@ const extractAuthToken = (cookieString: string) => {
     const match = cookieString.match(/some-auth=([^;]+)/);
     return match ? match[1] : null;
 }
-  
+
 
 describe("Users", () => {
     let authToken;
@@ -17,8 +17,8 @@ describe("Users", () => {
         const authResponse = await request(app)
             .post('/auth/login')
             .send({
-                name: 'k',
-                surname: 'k',
+                name: 'e',
+                surname: 'e',
                 password: 'a'
             });
 
@@ -57,5 +57,6 @@ describe("Users", () => {
             expect(response.statusCode).toBe(200)
         })
     });
+
 
 })

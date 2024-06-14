@@ -14,8 +14,8 @@ describe("Tasks", () => {
         const authResponse = await request(app)
             .post('/auth/login')
             .send({
-                name: 'k',
-                surname: 'k',
+                name: 'e',
+                surname: 'e',
                 password: 'a'
             });
 
