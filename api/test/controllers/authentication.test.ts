@@ -3,7 +3,10 @@ import app from '../../src/index.ts';
 import TaskModel from '../../src/db/tasks.ts';
 // jest.mock('../../src/db/tasks.ts')
 
-
+const extractAuthToken = (cookieString: string) => {
+    const match = cookieString.match(/some-auth=([^;]+)/);
+    return match ? match[1] : null;
+}
 
 describe("Authentication", () => {
     let authToken;
@@ -55,15 +58,17 @@ describe("Authentication", () => {
         });
     });
 
+
+
     describe("Register a user", () => {
         test("Should respond with a 200 status code", async () => {
             const stuffToSend = {
-                    "name": "test10",
-                    "surname": "test10",
-                    "dob": "1990-01-01T00:00:00.000Z",
-                    "email": "test.test@test.com",
-                    "phone_no": "123",
-                    "password": "a"
+                    name: "test17",
+                    surname: "test17",
+                    dob: "1990-01-01T00:00:00.000Z",
+                    email: "test.test@test.com",
+                    phone_no: "123",
+                    password: "a"
                   
             }
 
@@ -97,4 +102,30 @@ describe("Authentication", () => {
         });
     });
 
+    
+    describe("Logout a user", () => {
+        test("Should respond with a 200 status code", async () => {
+            const stuffToSend = {
+                session_token: extractAuthToken(authToken[0])
+            }
+
+            const response = await request(app)
+                .post("/auth/logout")
+                .set('Cookie', authToken)
+                .send(stuffToSend);
+
+
+            expect(response.statusCode).toBe(200)
+        });
+
+        test("Should respond with a 403 status code", async () => {
+
+            const response = await request(app)
+                .post("/auth/logout")
+                .set('Cookie', authToken);
+
+
+            expect(response.statusCode).toBe(403)
+        });
+    });
 })
