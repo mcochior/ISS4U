@@ -63,8 +63,8 @@ describe("Authentication", () => {
     describe("Register a user", () => {
         test("Should respond with a 200 status code", async () => {
             const stuffToSend = {
-                    name: "test17",
-                    surname: "test17",
+                    name: "test19",
+                    surname: "test19",
                     dob: "1990-01-01T00:00:00.000Z",
                     email: "test.test@test.com",
                     phone_no: "123",

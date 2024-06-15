@@ -25,6 +25,25 @@ describe("Users", () => {
        authToken = authResponse.headers['set-cookie'];
     });
 
+    describe("Gets all users", () => {
+        test("Should respond with a 200 status code", async () => {
+            const response = await request(app)
+                .get("/users")
+                .set('Cookie', authToken);
+
+
+            expect(response.statusCode).toBe(200)
+        });
+
+        test("Should respond with a 403 status code", async () => {
+
+            const response = await request(app)
+                .get("/users");
+
+            expect(response.statusCode).toBe(403)
+        });
+    });
+
     describe("Gets user id by name and surname", () => {
         test("Should respond with a 200 status code", async () => {
             const stuffToSend = {
