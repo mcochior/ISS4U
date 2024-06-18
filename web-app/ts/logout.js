@@ -1,6 +1,4 @@
-console.log("WOOOOOOOOOOOOOOOOOW");
 function logout(){
-    console.log("ayo im in");
     const sessionToken = getCookie('some-auth');
 
     console.log(sessionToken);

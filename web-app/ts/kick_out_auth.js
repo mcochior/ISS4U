@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(data)
     })
     .then(res => {
-        console.log("NICE");
         if (res.status < 400){
             window.location.replace("logged_in_page.html");
         }
@@ -41,6 +40,5 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error: ', error);
     });
 
-    console.log("end");
 
 });

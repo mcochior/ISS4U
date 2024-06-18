@@ -35,5 +35,4 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error: ', error);
     });
 
-    console.log("end");
 });

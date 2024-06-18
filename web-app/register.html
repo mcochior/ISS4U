@@ -20,7 +20,6 @@
 
                 const data = Object.fromEntries(formData);
 
-                console.log("HEY:");
                 console.log(data);
 
 
@@ -36,14 +35,24 @@
                     credentials: 'include',
                     body: JSON.stringify(data),
                 })
-                .then(res => res.json())
+                .then(res => {
+                    res.json();
+                    if (res.status < 400 || res.status >= 500) {
+                        window.alert("User registered successfully");
+                    }else{
+                        window.alert("Registration failed!");
+                    }
+                })
                 .then(data => {
                     console.log(data);
-                    window.alert("User registered successfully")
+
+                    
                     // window.location.href = "logged_in_page.html";
                 })
                 .catch(error => {
                     console.error('Error: ', error);
+                    window.alert("Registration failed!");
+
                 });
             });
         });
@@ -61,13 +70,13 @@
             <tr>
                 <td>Name: </td>
                 <td>
-                    <input type = "text" name = "name" value = "a">
+                    <input type = "text" name = "name">
                 </td>
             </tr>
             <tr>
                 <td>Surname: </td>
                 <td>
-                    <input type = "text" name = "surname" value = "a">
+                    <input type = "text" name = "surname">
                 </td>
             </tr>
             <tr>
@@ -91,7 +100,7 @@
             <tr>
                 <td>Password: </td>
                 <td>
-                    <input type = "password" name = "password" value = "a">
+                    <input type = "password" name = "password">
                 </td>
             </tr>
 

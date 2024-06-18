@@ -41,10 +41,14 @@
                     res.json();
                     if (res.status < 400 || res.status >= 500) {
                         window.location.replace("logged_in_page.html");
+                    }else{
+                        window.alert("Login failed!");
                     }
+
                 })
                 .catch(error => {
                     console.error('Error: ', error);
+                    window.alert("Login failed!");
                 });
             });
         });

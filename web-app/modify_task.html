@@ -104,6 +104,8 @@
 
                 
                 if (!response2.ok) {
+                    window.alert("Task modification failed");
+
                     throw new Error('Not nice :(');
                 }else{
                     window.alert("Task modified successfully");
@@ -123,7 +125,7 @@
             <tr>
                 <td>Task Id: </td>
                 <td>
-                    <input type = "text" name = "task_id" value = "66597eb0d6d6218aa4b28bd7">
+                    <input type = "text" name = "task_id">
                 </td>
             </tr>
             <tr>
