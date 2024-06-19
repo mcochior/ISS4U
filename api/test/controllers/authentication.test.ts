@@ -62,9 +62,11 @@ describe("Authentication", () => {
 
     describe("Register a user", () => {
         test("Should respond with a 200 status code", async () => {
+            let random_number1 = Math.floor(Math.random() * (1000000 + 1));
+            let random_number2 = Math.floor(Math.random() * (1000000 + 1));
             const stuffToSend = {
-                    name: "test_works543",
-                    surname: "test_works543",
+                    name: "test_" + random_number1.toString(),
+                    surname: "test_" + random_number2.toString(),
                     dob: "1990-01-01T00:00:00.000Z",
                     email: "test.test@test.com",
                     phone_no: "123",
